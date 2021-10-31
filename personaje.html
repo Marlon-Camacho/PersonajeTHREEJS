@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personaje</title>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/three@0.85.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+
+        //import * as THREE from "./three.module.js";
+        //import {OrbitControls} from "./OrbitControls";
+
+        var scene = new THREE.Scene();
+        scene.background = new THREE.Color(0, 0, 0);
+        //scene.fog = new THREE.Fog();
+
+        var camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth/window.innerHeight
+        );
+
+        
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        //cabeza
+        var geometry = new THREE.BoxGeometry(1,1,1);
+        var material = new THREE.MeshBasicMaterial({color: 003300});
+        var cube = new THREE.Mesh(geometry, material);
+        cube.position.y = 1.9;
+        
+        //cuerpo
+        var geometry1 = new THREE.BoxGeometry(1.3,1.9,1);
+        var cube2 = new THREE.Mesh(geometry1, material);
+        cube2.position.y= 0.25;
+
+        //cuello
+        var geometrycuello = new THREE.CylinderGeometry(0.2, 0.2, 0.5);
+        var materialcilindro = new THREE.MeshBasicMaterial({color: 100000});
+
+        var cilindro = new THREE.Mesh(geometrycuello, materialcilindro);
+        cilindro.position.y = 1.4;
+
+        //brazos
+        var geometrypbrazos = new THREE.CylinderGeometry(0.1, 0.1, 0.8);
+        
+        var cilindrop1 = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindrop1.position.x =0.9;
+        cilindrop1.position.y =0.5;
+
+        var cilindrop2 = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindrop2.position.x = -0.9;
+        cilindrop2.position.y = 0.5;
+
+        var cilindrop3 = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindrop3.position.x = 0.9;
+        cilindrop3.position.y = -0.1;
+
+        var cilindrop4 = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindrop4.position.x = -0.9;
+        cilindrop4.position.y = -0.1;
+
+        var geometryPhombros = new THREE.SphereGeometry(0.3, 100, 100 );
+        var geometryPcodos = new THREE.SphereGeometry(0.16, 100, 100 );
+        var materialesfera = new THREE.MeshBasicMaterial({color: 102200});
+        
+        var esfera = new THREE.Mesh(geometryPhombros, materialesfera);
+        esfera.position.x = 0.9;
+        esfera.position.y = 1;
+        
+        var esfera2 = new THREE.Mesh(geometryPhombros, materialesfera);
+        esfera2.position.x = -0.9;
+        esfera2.position.y = 1;
+
+        var esferacodo1 = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferacodo1.position.x = 0.9;
+        esferacodo1.position.y = 0.1;
+
+        var esferacodo2 = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferacodo2.position.x = -0.9;
+        esferacodo2.position.y = 0.1;
+
+        var esferaman = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferaman.position.x = 0.9;
+        esferaman.position.y = -0.6;
+
+        var esferaman1 = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferaman1.position.x = -0.9;
+        esferaman1.position.y = -0.6;
+
+        //piernas
+        var esferapp1 = new THREE.Mesh(geometryPhombros, materialesfera);
+        esferapp1.position.x = -0.4;
+        esferapp1.position.y = -0.9;
+
+        var esferapp2 = new THREE.Mesh(geometryPhombros, materialesfera);
+        esferapp2.position.x = 0.4;
+        esferapp2.position.y = -0.9;
+
+        var cilindropp = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindropp.position.x = 0.4;
+        cilindropp.position.y = -1.2;
+
+        var cilindropp1 = new THREE.Mesh(geometrypbrazos, materialcilindro);
+        cilindropp1.position.x = -0.4;
+        cilindropp1.position.y = -1.2;
+
+        var esferarod = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferarod.position.x = -0.4;
+        esferarod.position.y = -1.6;
+
+        var esferarod1 = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferarod1.position.x = 0.4;
+        esferarod1.position.y = -1.6;
+
+        //decoraciones
+        var materialdec = new THREE.MeshBasicMaterial({color: 102200});
+        var geometrydec = new THREE.BoxGeometry(0.8,0.5,0.3);
+        var cubedec = new THREE.Mesh(geometrydec, materialdec);
+        cubedec.position.y = 0.5;
+        cubedec.position.z = 0.4;
+
+        //ojos
+        var esferaojo = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferaojo.position.x = -0.2;
+        esferaojo.position.y = 2;
+        esferaojo.position.z = 0.4;
+
+        var esferaojo1 = new THREE.Mesh(geometryPcodos, materialesfera);
+        esferaojo1.position.x = 0.2;
+        esferaojo1.position.y = 2;
+        esferaojo1.position.z = 0.4;
+
+        //boca
+        var materialesferab = new THREE.MeshBasicMaterial({color: 800000});
+        var geometryPb = new THREE.SphereGeometry(0.3, 4, 3 );
+        var esferab = new THREE.Mesh(geometryPb, materialesferab);
+        esferab.position.x = 0;
+        esferab.position.y = 1.7;
+        esferab.position.z = 0.4;
+
+        camera.position.z = 5;
+
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.update();
+
+
+        scene.add(cube, cube2, cilindro, cilindrop1, cilindrop2, esfera, esfera2, esferacodo1, esferacodo2, cilindrop3, cilindrop4, esferapp1, esferapp2, cilindropp, cilindropp1, esferarod, esferarod1, esferaman, esferaman1, cubedec, esferaojo, esferaojo1, esferab);
+
+        function animate(time) {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        
+
+    </script>
+
+</body>
+</html>
